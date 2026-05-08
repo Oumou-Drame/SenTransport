@@ -1,19 +1,19 @@
 import './LigneBus.css';
 
-function LigneBus({ numero, depart, arrivee, arrets }) {
+function LigneBus({ numero, depart, arrivee, arrets,couleur }) {
   return (
-    <div className="ligne-bus-card">
-      <div className="ligne-numero">
-        Ligne {numero}
+    <div className="ligne-bus">
+      <div className="ligne-numero" style = {{backgroundColor : couleur}}>
+         {numero}
       </div>
-      <div className="ligne-trajet">
-        <strong>{depart}</strong> 
-        <span className="fleche"> → </span> 
-        <strong>{arrivee}</strong>
+      <div className="ligne-info">
+        <span className='ligne-trajet'>
+          {depart} &rarr; {arrivee}
+        </span>
       </div>
-      <div className="ligne-details">
+      <span className="ligne-arrets">
         {arrets} arrêts
-      </div>
+      </span>
     </div>
   );
 }
