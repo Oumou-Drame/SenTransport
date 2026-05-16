@@ -1,4 +1,4 @@
-import './Recherche.css';
+import "./Recherche.css";
 
 function Recherche({ valeur, onChange }) {
   return (
@@ -6,9 +6,9 @@ function Recherche({ valeur, onChange }) {
       <input
         type="text"
         className="recherche-input"
-        placeholder="Rechercher une ligne (depart, arrivee)..."
+        placeholder="Rechercher une ligne (départ, arrivée)..."
         value={valeur}
-        onChange={e => onChange(e.target.value)}
+        onChange={(e) => onChange(e.target.value)}
       />
     </div>
   );
