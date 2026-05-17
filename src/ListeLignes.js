@@ -11,7 +11,7 @@ function ListeLignes({ lignes }) {
       {
         lignes.map(ligne =>{
           const {id,numero,depart,arrivee} = ligne;
-          <LigneBus
+            return <LigneBus
               key = {id}
               numero = {numero}
               depart = {depart}
