@@ -8,18 +8,20 @@ function ListeLignes({ lignes }) {
       <p className="liste-description">
         {lignes.length} lignes disponibles
       </p>
-      {lignes.map(ligne => (
-        <LigneBus
-          key={ligne.id}
-          numero={ligne.numero}
-          depart={ligne.depart}
-          arrivee={ligne.arrivee}
-          arrets={ligne.arrets}
-          couleur={ligne.couleur}
-        />
-      ))}
+      {
+        lignes.map(ligne =>{
+          const {id,numero,depart,arrivee} = ligne;
+          <LigneBus
+              key = {id}
+              numero = {numero}
+              depart = {depart}
+              arrivee={arrivee}
+          />
+        })
+      }
     </div>
   );
 }
 
 export default ListeLignes;
+
