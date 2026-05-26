@@ -1,8 +1,9 @@
 import "./Recherche.css";
 
-function Recherche({ valeur, onChange }) {
+function Recherche({ valeur, onChange,nombreRecherches }) {
   return (
     <div className="recherche">
+        <p>Nombre de recherches effectuées : {nombreRecherches}</p>
       <input
         type="text"
         className="recherche-input"

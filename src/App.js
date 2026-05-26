@@ -7,10 +7,11 @@ import Footer from './Footer';
 import StatReseau from './StatReseau';
 import LigneBus from './LigneBus';
 import DetailLigne from './DetailLigne';
-
+import Effacer from './Effacer';
 function App() {
   const [recherche, setRecherche] = useState("");
   const [ligneSelectionnee, setLigneSelectionnee] = useState(null);
+  const [compteur, setCompteur] = useState(0);
   const lignes = [
     {
       id: 1,
@@ -120,23 +121,31 @@ function App() {
   );
   // GESTION DU CLIC
   function handleClickLigne(ligne) {
-    if (ligneSelectionnee?.id === ligne.id) {
+    if (ligneSelectionnee && ligneSelectionnee?.id === ligne.id) {
       setLigneSelectionnee(null); // re-clic = désélectionner
     } else {
       setLigneSelectionnee(ligne); // premier clic = sélectionner
     }
   }
+  const handleChangementRecherche = (texteSaisi) => {
+    setRecherche(texteSaisi);
+    setCompteur(compteur +1);
+  };
+
   return (
     <div className="App">
       <Header />
       <main className="contenu">
-        <Recherche valeur={recherche} onChange={setRecherche} />
-
+        <Recherche valeur={recherche} onChange={handleChangementRecherche} nombreRecherches={compteur} />
+        <Effacer valeur="" onClick={setRecherche} />
         <p className="resultat-recherche">
-          {lignesFiltrees.length} ligne
-          {lignesFiltrees.length > 1 ? "s" : ""} trouvée
-          {lignesFiltrees.length > 1 ? "s" : ""}
+          {lignesFiltrees.length === 0
+            ? "Aucune ligne trouvée"
+            : `${lignesFiltrees.length} ligne${lignesFiltrees.length > 1 ? "s" : ""} trouvée${lignesFiltrees.length > 1 ? "s" : ""}`
+          }
+
         </p>
+
 
         {lignesFiltrees.map((ligne) => (
           <LigneBus
@@ -152,6 +161,8 @@ function App() {
         ))}
         {ligneSelectionnee
           && <DetailLigne ligne={ligneSelectionnee} />}
+
+
       </main>
       <Footer />
     </div>
