@@ -33,6 +33,7 @@ function App() {
       })
       .catch(error => {
         setErreur(error.message);
+        setChargement(false);
       });
   }, []);
   // FILTRE
