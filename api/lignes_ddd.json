@@ -92,5 +92,35 @@
       "HLM",
       "Sandaga"
     ]
+  },
+  {
+    "id": 7,
+    "numero": "120",
+    "depart": "LIberte 6",
+    "arrivee": "Sandaga",
+    "arrets": 11,
+    "listeArrets": [
+      "Yoff Village",
+      "Aeroport LSS",
+      "Parcelles U17",
+      "Grand Yoff",
+      "HLM",
+      "Sandaga"
+    ]
+  },
+  {
+    "id": 8,
+    "numero": "40",
+    "depart": "Camberene",
+    "arrivee": "Sandaga",
+    "arrets": 11,
+    "listeArrets": [
+      "Yoff Village",
+      "Aeroport LSS",
+      "Parcelles U17",
+      "Grand Yoff",
+      "HLM",
+      "Sandaga"
+    ]
   }
 ]

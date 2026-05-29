@@ -16,8 +16,7 @@ function App() {
   const [recherche, setRecherche] = useState("");
   const [ligneSelectionnee, setLigneSelectionnee] = useState(null);
 
-  // 2. Charger les donnees au demarrage
-  useEffect(() => {
+  const Recharger = () => {
     fetch("http://localhost:5000/lignes")
       .then(response => {
         if (!response.ok) {
@@ -35,6 +34,11 @@ function App() {
         setErreur(error.message);
         setChargement(false);
       });
+
+  }
+  // 2. Charger les donnees au demarrage
+  useEffect(() => {
+    Recharger();
   }, []);
   // FILTRE
   const lignesFiltrees = lignes.filter((l) =>
@@ -47,7 +51,20 @@ function App() {
     if (ligneSelectionnee?.id === ligne.id) {
       setLigneSelectionnee(null); // re-clic = désélectionner
     } else {
-      setLigneSelectionnee(ligne); // premier clic = sélectionner
+      fetch(`http://localhost:5000/lignes/${ligne.id}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Impossible de charger les détails de cette ligne");
+          }
+          return response.json();
+        })
+        .then(data => {
+
+          setLigneSelectionnee(data);
+        })
+        .catch(error => {
+          alert(error.message);
+        });
     }
   }
   if (chargement) {
@@ -82,6 +99,7 @@ function App() {
       <Header />
       <main className="contenu">
         <Recherche valeur={recherche} onChange={setRecherche} />
+        <button onClick={Recharger}>Recharger</button>
 
         <p className="resultat-recherche">
           {lignesFiltrees.length} ligne
